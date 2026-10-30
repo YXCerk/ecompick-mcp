@@ -1,0 +1,18 @@
+{
+  "name": "ecompick-mcp",
+  "version": "0.1.0",
+  "description": "Find and compare ecommerce tools through EcomPick's free, read-only MCP server.",
+  "type": "module",
+  "license": "MIT",
+  "author": "EcomPick",
+  "homepage": "https://ecompick.com/api",
+  "repository": {"type":"git","url":"https://github.com/YXCerk/ecompick-mcp.git"},
+  "bugs": {"url":"https://github.com/YXCerk/ecompick-mcp/issues"},
+  "bin": {"ecompick-mcp":"dist/cli.js"},
+  "files": ["dist", "skills", "README.md", "LICENSE"],
+  "engines": {"node":">=22"},
+  "keywords": ["mcp", "ecommerce", "ecompick", "claude", "agent-skills"],
+  "scripts": {"build":"tsc", "test":"npm run build && node --test tests/*.test.mjs", "prepack":"npm run build", "test:live":"npm run build && node scripts/smoke.mjs"},
+  "dependencies": {"@modelcontextprotocol/sdk":"^1.29.0"},
+  "devDependencies": {"@types/node":"^22.0.0", "typescript":"^5.9.3"}
+}
