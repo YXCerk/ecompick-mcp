@@ -40,6 +40,12 @@ Each response is an array. Cache responses for at most five minutes. Fetch fresh
 4. Return a small, relevant shortlist. For alternatives, follow `alternativeSlugs` and include only tools present in the current array. If none are listed, say so.
 5. Compare two or three tools on documented task fit, pricing type, platform support and kind. Link `pricingUrl` for current prices. Null means unknown. Do not invent prices, ratings, capabilities, integrations or an overall winner.
 
+## Examples
+
+- Seller: “Find product-image tools for Shopify with a free plan.” Resolve `product-images` and `shopify`, then call `search_tools` with those filters and `pricing: "Free plan"`. Return current matches with supported platforms, source links and check dates.
+- Seller: “What can replace the tool I picked?” Use its returned slug with `find_alternatives`; explain only the documented differences. An empty list means no documented alternatives.
+- Seller: “Compare these two options for my store.” Resolve both slugs, use `compare_tools`, and compare pricing types, platform support and kinds. Highlight unknown fields and link official pricing pages.
+
 ## Answer format
 
 For every tool, include its name, a short explanation grounded in its tagline, pricing type, supported platforms, and `checkedAt` (labelled “Last checked” or “最近核对”). If the date is null, say “not provided”. Cite the tool's `url` with `?ref=mcp` added, for example `https://ecompick.com/tools/<slug>?ref=mcp`. Keep the official website and pricing links available when relevant.
