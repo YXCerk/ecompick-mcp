@@ -1,0 +1,27 @@
+name: Publish remote MCP to Registry
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run test:live
+      - name: Download publisher and verify checksum
+        run: |
+          curl --fail --location --output publisher.tar.gz https://github.com/modelcontextprotocol/registry/releases/download/v1.8.7/mcp-publisher_linux_amd64.tar.gz
+          curl --fail --location --output checksums.txt https://github.com/modelcontextprotocol/registry/releases/download/v1.8.7/registry_1.8.7_checksums.txt
+          mv publisher.tar.gz mcp-publisher_linux_amd64.tar.gz
+          grep ' mcp-publisher_linux_amd64.tar.gz$' checksums.txt | sha256sum --check
+          tar xzf mcp-publisher_linux_amd64.tar.gz mcp-publisher
+      - run: ./mcp-publisher login github-oidc
+      - run: ./mcp-publisher publish

@@ -132,3 +132,5 @@ npm pack --dry-run
 Tests use synthetic fixtures. CI builds and tests on Node.js 22 and 24. `test:live` checks the deployed remote server and the built stdio server with the official MCP SDK.
 
 To publish the prepared package, the maintainer runs `npm login`, then `npm publish --access public` (complete npm's own account/2FA requirements). Update the publication note above after the package is actually available.
+
+The remote-only Registry descriptor is in `server.json`. The manual `Publish remote MCP to Registry` workflow uses GitHub OIDC and publishes metadata only; it does not publish to npm.

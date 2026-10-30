@@ -1,0 +1,9 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.YXCerk/ecompick",
+  "title": "EcomPick",
+  "description": "Find and compare ecommerce tools by task, platform and pricing, with sources and last checked dates.",
+  "repository": {"url":"https://github.com/YXCerk/ecompick-mcp","source":"github"},
+  "version": "0.1.0",
+  "remotes": [{"type":"streamable-http","url":"https://ecompick.com/mcp"}]
+}
